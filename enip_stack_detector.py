@@ -155,15 +155,15 @@ ENIP_HEADER_SPECIAL = Struct(
 ################### Helpers ##############
 ##########################################
 def h2b(d):
-	return d.replace(" ", "").decode("hex")
+	return bytes.fromhex(d.replace(" ", ""))#decode("hex")
 
 def size2b(d, in_words=False):
-	data_len = len(d)/2 if in_words else len(d)
-	return struct.pack("<B", data_len)
+        data_len = len(d)/2 if in_words else len(d)
+        return struct.pack("<B", int(data_len))
 
 def size2h(d, in_words=False):
 	data_len = len(d)/2 if in_words else len(d)
-	return struct.pack("<H", data_len)
+	return struct.pack("<H", int(data_len))
 
 
 ##########################################
